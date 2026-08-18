@@ -125,3 +125,4 @@ coverage/
 RUN_LOCAL.md
 dev-local.sh
 SETUP.md
+DEPLOYMENT.html

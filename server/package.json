@@ -1,7 +1,7 @@
 {
   "name": "officer-app-server",
   "version": "1.0.0",
-  "description": "Officer App backend — Node + TypeScript + Express + Prisma + PostgreSQL",
+  "description": "Officer App backend \u2014 Node + TypeScript + Express + Prisma + PostgreSQL",
   "type": "module",
   "main": "dist/src/index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "seed:demo": "tsx prisma/seed.ts",
     "seed:stations": "tsx prisma/seed_stations.ts",
     "typecheck": "tsc --noEmit",
-    "studio": "prisma studio --config prisma/config.ts"
+    "studio": "prisma studio --config prisma/config.ts",
+    "migrate:deploy": "prisma migrate deploy --config prisma/config.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^6.19.3",

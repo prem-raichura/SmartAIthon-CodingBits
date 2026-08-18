@@ -32,6 +32,9 @@ const envSchema = z.object({
   CLOUDINARY_API_SECRET: z.string().optional(),
   // Public origin used to build absolute URLs for locally stored uploads.
   PUBLIC_URL: z.string().optional(),
+  // Shared secret so a platform scheduler (e.g. Vercel Cron) can trigger the
+  // reminder sweep without an admin JWT. Unset = only admins can trigger it.
+  CRON_SECRET: z.string().optional(),
 });
 
 export const env = envSchema.parse(process.env);
