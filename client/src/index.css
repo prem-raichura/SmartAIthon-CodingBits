@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #fafafa;
+    --bg-card: #ffffff;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --border: #e5e7eb;
+    --brand: #1e3a8a;
+    --brand-cyan: #06b6d4;
+  }
+
+  .dark {
+    --bg: #0a0e1a;
+    --bg-card: #111827;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --border: #1f2937;
+    --brand: #1e3a8a;
+    --brand-cyan: #06b6d4;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+    /* Subtle light-blue shifting base gradient */
+    background: linear-gradient(-45deg, #f0f9ff, #e8f4fd, #f5f9ff, #e0f2fe);
+    background-size: 400% 400%;
+    animation: bg-breathe 14s ease infinite;
+  }
+
+  .dark body {
+    background: linear-gradient(-45deg, #040b16, #0a0e1a, #050f20, #030914);
+    background-size: 400% 400%;
+    animation: bg-breathe 22s ease infinite;
+  }
+
+  @keyframes bg-breathe {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /*
+   * isolation: isolate creates a proper stacking context so that
+   * z-index: -1 pseudo-elements are truly behind ALL page content,
+   * preventing orb bleed-through into cards.
+   */
+  #root {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+  }
+
+  /* ── Orb layer — z-index: -1 keeps them strictly behind all content ── */
+  #root::before,
+  #root::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Light-mode orbs */
+  #root::before {
+    width: 680px;
+    height: 680px;
+    top: -160px;
+    left: -160px;
+    background: radial-gradient(circle, rgba(125, 211, 252, 0.38) 0%, rgba(186, 230, 253, 0.14) 50%, transparent 70%);
+    filter: blur(60px);
+    animation: orb-drift 18s ease-in-out infinite alternate;
+  }
+
+  #root::after {
+    width: 580px;
+    height: 580px;
+    bottom: -140px;
+    right: -140px;
+    background: radial-gradient(circle, rgba(165, 180, 252, 0.30) 0%, rgba(199, 210, 254, 0.10) 55%, transparent 70%);
+    filter: blur(60px);
+    animation: orb-drift 24s ease-in-out infinite alternate-reverse;
+  }
+
+  /* Dark-mode orb overrides */
+  .dark #root::before {
+    background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+    filter: blur(80px);
+    opacity: 0.08;
+    animation-duration: 18s;
+  }
+
+  .dark #root::after {
+    background: radial-gradient(circle, #1e3a8a 0%, transparent 70%);
+    filter: blur(80px);
+    opacity: 0.08;
+    animation-duration: 24s;
+    animation-direction: alternate-reverse;
+  }
+
+  @keyframes orb-drift {
+    0%   { transform: translate(0,     0   ) scale(1);    }
+    25%  { transform: translate(45px, -35px) scale(1.06); }
+    50%  { transform: translate(20px,  30px) scale(0.96); }
+    75%  { transform: translate(-30px, 15px) scale(1.04); }
+    100% { transform: translate(35px,  45px) scale(1.02); }
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background-color: #d1d5db;
+    transition: background-color 0.15s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #06b6d4;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: #374151;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background-color: #06b6d4;
+  }
+
+  ::selection {
+    background-color: rgba(6, 182, 212, 0.2);
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid #06b6d4;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .gradient-brand {
+    background: linear-gradient(135deg, #1e3a8a 0%, #06b6d4 100%);
+  }
+
+  .gradient-brand-text {
+    background: linear-gradient(135deg, #1e3a8a 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-base {
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .card-base {
+    border-color: #1f2937;
+    background-color: #111827;
+  }
+
+  .severity-critical {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+
+  .dark .severity-critical {
+    background-color: rgba(127, 29, 29, 0.3);
+    color: #f87171;
+  }
+
+  .severity-high {
+    background-color: #ffedd5;
+    color: #c2410c;
+  }
+
+  .dark .severity-high {
+    background-color: rgba(124, 45, 18, 0.3);
+    color: #fb923c;
+  }
+
+  .severity-medium {
+    background-color: #fef9c3;
+    color: #a16207;
+  }
+
+  .dark .severity-medium {
+    background-color: rgba(113, 63, 18, 0.3);
+    color: #facc15;
+  }
+
+  .severity-low {
+    background-color: #d1fae5;
+    color: #047857;
+  }
+
+  .dark .severity-low {
+    background-color: rgba(6, 78, 59, 0.3);
+    color: #34d399;
+  }
+}

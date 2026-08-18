@@ -1,0 +1,134 @@
+[
+  {
+    "id": "REG-1000",
+    "name": "Officer Applicant 1",
+    "badge_id": "BTP-9000",
+    "requested_station": "Bellandur",
+    "phone": "+91 9228500249",
+    "email": "officer1@police.gov.in",
+    "applied_on": "2024-04-07",
+    "experience_years": 4,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1001",
+    "name": "Officer Applicant 2",
+    "badge_id": "BTP-9001",
+    "requested_station": "Pulikeshinagar(F.Town)",
+    "phone": "+91 9982980455",
+    "email": "officer2@police.gov.in",
+    "applied_on": "2024-04-05",
+    "experience_years": 10,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1002",
+    "name": "Officer Applicant 3",
+    "badge_id": "BTP-9002",
+    "requested_station": "HSR Layout",
+    "phone": "+91 9159574807",
+    "email": "officer3@police.gov.in",
+    "applied_on": "2024-04-01",
+    "experience_years": 10,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1003",
+    "name": "Officer Applicant 4",
+    "badge_id": "BTP-9003",
+    "requested_station": "HSR Layout",
+    "phone": "+91 9827448106",
+    "email": "officer4@police.gov.in",
+    "applied_on": "2024-04-03",
+    "experience_years": 9,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1004",
+    "name": "Officer Applicant 5",
+    "badge_id": "BTP-9004",
+    "requested_station": "Kodigehalli",
+    "phone": "+91 9219248870",
+    "email": "officer5@police.gov.in",
+    "applied_on": "2024-04-05",
+    "experience_years": 1,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1005",
+    "name": "Officer Applicant 6",
+    "badge_id": "BTP-9005",
+    "requested_station": "Kodigehalli",
+    "phone": "+91 9662387884",
+    "email": "officer6@police.gov.in",
+    "applied_on": "2024-04-01",
+    "experience_years": 12,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1006",
+    "name": "Officer Applicant 7",
+    "badge_id": "BTP-9006",
+    "requested_station": "Rajajinagar",
+    "phone": "+91 9785448979",
+    "email": "officer7@police.gov.in",
+    "applied_on": "2024-04-05",
+    "experience_years": 13,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1007",
+    "name": "Officer Applicant 8",
+    "badge_id": "BTP-9007",
+    "requested_station": "Vijayanagara",
+    "phone": "+91 9871067704",
+    "email": "officer8@police.gov.in",
+    "applied_on": "2024-04-01",
+    "experience_years": 8,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1008",
+    "name": "Officer Applicant 9",
+    "badge_id": "BTP-9008",
+    "requested_station": "High ground",
+    "phone": "+91 9531854331",
+    "email": "officer9@police.gov.in",
+    "applied_on": "2024-04-06",
+    "experience_years": 1,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1009",
+    "name": "Officer Applicant 10",
+    "badge_id": "BTP-9009",
+    "requested_station": "Malleshwaram",
+    "phone": "+91 9847550921",
+    "email": "officer10@police.gov.in",
+    "applied_on": "2024-04-07",
+    "experience_years": 7,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1010",
+    "name": "Officer Applicant 11",
+    "badge_id": "BTP-9010",
+    "requested_station": "City Market",
+    "phone": "+91 9905861870",
+    "email": "officer11@police.gov.in",
+    "applied_on": "2024-04-02",
+    "experience_years": 8,
+    "status": "pending"
+  },
+  {
+    "id": "REG-1011",
+    "name": "Officer Applicant 12",
+    "badge_id": "BTP-9011",
+    "requested_station": "HAL Old Airport",
+    "phone": "+91 9678315459",
+    "email": "officer12@police.gov.in",
+    "applied_on": "2024-04-01",
+    "experience_years": 4,
+    "status": "pending"
+  }
+]

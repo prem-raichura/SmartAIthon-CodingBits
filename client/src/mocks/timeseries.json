@@ -1,0 +1,278 @@
+{
+  "monthly": [
+    {
+      "month": "Jan-24",
+      "tickets": 65813
+    },
+    {
+      "month": "Feb-24",
+      "tickets": 54650
+    },
+    {
+      "month": "Mar-24",
+      "tickets": 55229
+    },
+    {
+      "month": "Apr-24",
+      "tickets": 15082
+    },
+    {
+      "month": "Nov-23",
+      "tickets": 44117
+    },
+    {
+      "month": "Dec-23",
+      "tickets": 63554
+    }
+  ],
+  "daily": [
+    {
+      "day": "Mon",
+      "tickets": 38931
+    },
+    {
+      "day": "Tue",
+      "tickets": 42929
+    },
+    {
+      "day": "Wed",
+      "tickets": 43065
+    },
+    {
+      "day": "Thu",
+      "tickets": 41528
+    },
+    {
+      "day": "Fri",
+      "tickets": 41702
+    },
+    {
+      "day": "Sat",
+      "tickets": 43427
+    },
+    {
+      "day": "Sun",
+      "tickets": 46863
+    }
+  ],
+  "hourly": [
+    {
+      "hour": 0,
+      "tickets": 21760
+    },
+    {
+      "hour": 1,
+      "tickets": 17155
+    },
+    {
+      "hour": 2,
+      "tickets": 24770
+    },
+    {
+      "hour": 3,
+      "tickets": 25707
+    },
+    {
+      "hour": 4,
+      "tickets": 29102
+    },
+    {
+      "hour": 5,
+      "tickets": 34085
+    },
+    {
+      "hour": 6,
+      "tickets": 26890
+    },
+    {
+      "hour": 7,
+      "tickets": 14608
+    },
+    {
+      "hour": 8,
+      "tickets": 8556
+    },
+    {
+      "hour": 9,
+      "tickets": 3145
+    },
+    {
+      "hour": 10,
+      "tickets": 518
+    },
+    {
+      "hour": 11,
+      "tickets": 577
+    },
+    {
+      "hour": 12,
+      "tickets": 219
+    },
+    {
+      "hour": 13,
+      "tickets": 56
+    },
+    {
+      "hour": 14,
+      "tickets": 16
+    },
+    {
+      "hour": 15,
+      "tickets": 66
+    },
+    {
+      "hour": 16,
+      "tickets": 416
+    },
+    {
+      "hour": 17,
+      "tickets": 818
+    },
+    {
+      "hour": 18,
+      "tickets": 1971
+    },
+    {
+      "hour": 19,
+      "tickets": 10713
+    },
+    {
+      "hour": 20,
+      "tickets": 11834
+    },
+    {
+      "hour": 21,
+      "tickets": 19763
+    },
+    {
+      "hour": 22,
+      "tickets": 22839
+    },
+    {
+      "hour": 23,
+      "tickets": 22861
+    }
+  ],
+  "daily_trend": [
+    {
+      "date": "2024-03-10",
+      "tickets": 1775
+    },
+    {
+      "date": "2024-03-11",
+      "tickets": 1499
+    },
+    {
+      "date": "2024-03-12",
+      "tickets": 2346
+    },
+    {
+      "date": "2024-03-13",
+      "tickets": 1832
+    },
+    {
+      "date": "2024-03-14",
+      "tickets": 2060
+    },
+    {
+      "date": "2024-03-15",
+      "tickets": 1816
+    },
+    {
+      "date": "2024-03-16",
+      "tickets": 1547
+    },
+    {
+      "date": "2024-03-17",
+      "tickets": 1658
+    },
+    {
+      "date": "2024-03-18",
+      "tickets": 1598
+    },
+    {
+      "date": "2024-03-19",
+      "tickets": 1538
+    },
+    {
+      "date": "2024-03-20",
+      "tickets": 1282
+    },
+    {
+      "date": "2024-03-21",
+      "tickets": 1408
+    },
+    {
+      "date": "2024-03-22",
+      "tickets": 1457
+    },
+    {
+      "date": "2024-03-23",
+      "tickets": 1665
+    },
+    {
+      "date": "2024-03-24",
+      "tickets": 1890
+    },
+    {
+      "date": "2024-03-25",
+      "tickets": 1615
+    },
+    {
+      "date": "2024-03-26",
+      "tickets": 1437
+    },
+    {
+      "date": "2024-03-27",
+      "tickets": 1910
+    },
+    {
+      "date": "2024-03-28",
+      "tickets": 2017
+    },
+    {
+      "date": "2024-03-29",
+      "tickets": 1808
+    },
+    {
+      "date": "2024-03-30",
+      "tickets": 2175
+    },
+    {
+      "date": "2024-03-31",
+      "tickets": 2324
+    },
+    {
+      "date": "2024-04-01",
+      "tickets": 1983
+    },
+    {
+      "date": "2024-04-02",
+      "tickets": 2109
+    },
+    {
+      "date": "2024-04-03",
+      "tickets": 1936
+    },
+    {
+      "date": "2024-04-04",
+      "tickets": 1859
+    },
+    {
+      "date": "2024-04-05",
+      "tickets": 1575
+    },
+    {
+      "date": "2024-04-06",
+      "tickets": 1828
+    },
+    {
+      "date": "2024-04-07",
+      "tickets": 2601
+    },
+    {
+      "date": "2024-04-08",
+      "tickets": 1191
+    }
+  ]
+}

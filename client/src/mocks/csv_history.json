@@ -1,0 +1,42 @@
+[
+  {
+    "id": "UP-001",
+    "filename": "jan_to_may_violations.csv",
+    "uploaded_on": "2024-01-15 10:32",
+    "rows": 145203,
+    "status": "completed",
+    "uploaded_by": "admin@police.gov.in"
+  },
+  {
+    "id": "UP-002",
+    "filename": "feb_violations.csv",
+    "uploaded_on": "2024-02-18 14:21",
+    "rows": 54660,
+    "status": "completed",
+    "uploaded_by": "admin@police.gov.in"
+  },
+  {
+    "id": "UP-003",
+    "filename": "mar_violations.csv",
+    "uploaded_on": "2024-03-19 09:15",
+    "rows": 55453,
+    "status": "completed",
+    "uploaded_by": "head@police.gov.in"
+  },
+  {
+    "id": "UP-004",
+    "filename": "apr_partial.csv",
+    "uploaded_on": "2024-04-09 16:48",
+    "rows": 15432,
+    "status": "completed",
+    "uploaded_by": "head@police.gov.in"
+  },
+  {
+    "id": "UP-005",
+    "filename": "may_partial.csv",
+    "uploaded_on": "2024-05-05 11:22",
+    "rows": 8294,
+    "status": "processing",
+    "uploaded_by": "admin@police.gov.in"
+  }
+]

@@ -1,0 +1,317 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RegistrationStatus {
+  pending
+  approved
+  rejected
+}
+
+enum UserRole {
+  admin
+  officer
+}
+
+enum PredictionWindow {
+  H24 @map("24hr")
+  H48 @map("48hr")
+}
+
+enum RunStatus {
+  pending
+  processing
+  done
+  failed
+}
+
+enum RiskLevel {
+  low
+  medium
+  high
+  critical
+}
+
+enum AssignmentStatus {
+  pending
+  active
+  completed
+  expired
+  cancelled
+}
+
+enum NotificationType {
+  assignment
+  reminder
+  system
+  alert
+}
+
+enum OfficerAvailability {
+  available
+  on_task
+  off_duty
+}
+
+enum UnassignStatus {
+  pending
+  approved
+  rejected
+}
+
+enum CongestionSeverity {
+  none
+  low
+  medium
+  high
+}
+
+enum BatchStatus {
+  draft
+  submitted
+}
+
+model RegistrationRequest {
+  request_id     String             @id @default(uuid())
+  name           String             @db.VarChar(100)
+  email          String             @unique @db.VarChar(150)
+  number         String             @db.VarChar(20)
+  police_station String             @db.VarChar(150)
+  avatar_url     String?
+  status         RegistrationStatus @default(pending)
+  reviewed_by    String?
+  reviewer       User?              @relation("ReviewedRequests", fields: [reviewed_by], references: [id])
+  created_at     DateTime           @default(now())
+  reviewed_at    DateTime?
+  user           User?              @relation("RequestUser")
+
+  @@map("registration_requests")
+}
+
+model User {
+  id               String               @id @default(uuid())
+  request_id       String?              @unique
+  request          RegistrationRequest? @relation("RequestUser", fields: [request_id], references: [request_id])
+  name             String               @db.VarChar(100)
+  email            String               @unique @db.VarChar(150)
+  number           String               @db.VarChar(20)
+  police_station   String               @db.VarChar(150)
+  avatar_url       String?
+  username             String               @unique @db.VarChar(100)
+  password             String
+  role                 UserRole             @default(officer)
+  push_token           String?
+  is_active            Boolean              @default(true)
+  must_change_password Boolean              @default(false)
+  availability         OfficerAvailability  @default(available)
+  last_lat             Float?
+  last_lon             Float?
+  last_seen_at         DateTime?
+  created_at           DateTime             @default(now())
+  updated_at           DateTime             @updatedAt
+  reviewedRequests RegistrationRequest[] @relation("ReviewedRequests")
+  assignments      Assignment[]
+  notifications    Notification[]
+  validations      FieldValidation[]
+  locationPings    LocationPing[]
+  unassignRequests UnassignRequest[]
+
+  @@map("users")
+}
+
+model PredictionRun {
+  run_id            String           @id @default(uuid())
+  csv_path          String
+  original_filename String?          @db.VarChar(255)
+  rows_in           Int?
+  uploaded_by       String?
+  model_version     String           @db.VarChar(50)
+  prediction_window PredictionWindow @default(H24)
+  h3_resolution     Int              @default(8) @db.SmallInt
+  status            RunStatus        @default(pending)
+  run_at            DateTime?
+  created_at        DateTime         @default(now())
+  cells             PredictionCell[]
+  assignments       Assignment[]
+  analytics         RunAnalytics?
+
+  @@map("prediction_runs")
+}
+
+model PredictionCell {
+  cell_id                String           @id @default(uuid())
+  run_id                 String
+  run                    PredictionRun    @relation(fields: [run_id], references: [run_id])
+  h3_index               String           @db.VarChar(20)
+  h3_resolution          Int              @db.SmallInt
+  prediction_window      PredictionWindow
+  latitude               Float?
+  longitude              Float?
+  predicted_violations   Int?
+  predicted_tickets      Int?
+  pred_48h               Int?
+  dominant_vehicle_type  String?          @db.VarChar(50)
+  dominant_violation     String?          @db.VarChar(80)
+  congestion_score       Float?
+  impact_score           Float?
+  double_violation       Boolean?
+  blockage_relation_type String?          @db.VarChar(50)
+  blockage_rate          Int?
+  risk_level             RiskLevel
+  risk_score             Int?
+  confidence             Float?
+  location               String?          @db.VarChar(120)
+  z_score                Float?
+  hotspot_code           String?          @db.VarChar(12)
+  forecast_date_24h      DateTime?        @db.Date
+  forecast_date_48h      DateTime?        @db.Date
+  created_at             DateTime         @default(now())
+  assignments            Assignment[]
+  validations            FieldValidation[]
+
+  @@index([h3_index])
+  @@index([run_id])
+  @@map("prediction_cells")
+}
+
+model RunAnalytics {
+  run_id      String        @id
+  run         PredictionRun @relation(fields: [run_id], references: [run_id])
+  dashboard   Json
+  hotspots    Json
+  stations    Json
+  officers    Json
+  violations  Json
+  vehicles    Json
+  timeseries  Json
+  funnel      Json
+  edi         Json
+  activity    Json
+  created_at  DateTime      @default(now())
+
+  @@map("run_analytics")
+}
+
+model Assignment {
+  id            String           @id @default(uuid())
+  user_id       String
+  user          User             @relation(fields: [user_id], references: [id])
+  cell_id       String
+  cell          PredictionCell   @relation(fields: [cell_id], references: [cell_id])
+  run_id        String
+  run           PredictionRun    @relation(fields: [run_id], references: [run_id])
+  time_limit    DateTime?
+  status        AssignmentStatus @default(pending)
+  notified_at   DateTime?
+  opened_at     DateTime?
+  created_at    DateTime         @default(now())
+  notifications Notification[]
+  validation    FieldValidation?
+  locationPings LocationPing[]
+  unassignRequests UnassignRequest[]
+
+  @@map("assignments")
+}
+
+model Notification {
+  notification_id String           @id @default(uuid())
+  user_id         String
+  user            User             @relation(fields: [user_id], references: [id])
+  assignment_id   String?
+  assignment      Assignment?      @relation(fields: [assignment_id], references: [id])
+  type            NotificationType
+  title           String           @db.VarChar(150)
+  body            String
+  is_read         Boolean          @default(false)
+  sent_at         DateTime         @default(now())
+
+  @@map("notifications")
+}
+
+model FieldValidation {
+  validation_id         String              @id @default(uuid())
+  assignment_id         String              @unique
+  assignment            Assignment          @relation(fields: [assignment_id], references: [id])
+  officer_id            String
+  officer               User                @relation(fields: [officer_id], references: [id])
+  cell_id               String
+  cell                  PredictionCell      @relation(fields: [cell_id], references: [cell_id])
+  has_congestion        Boolean
+  congestion_severity   CongestionSeverity?
+  dominant_vehicle_type String?             @db.VarChar(50)
+  vehicle_count_approx  Int?
+  notes                 String?
+  opinion               String?
+  latitude              Float?
+  longitude             Float?
+  photo_url             String?
+  submitted_at          DateTime            @default(now())
+
+  @@map("field_validations")
+}
+
+model Station {
+  id         String   @id @default(uuid())
+  name       String   @unique @db.VarChar(150)
+  code       String?  @db.VarChar(40)
+  latitude   Float
+  longitude  Float
+  created_at DateTime @default(now())
+
+  @@map("stations")
+}
+
+model LocationPing {
+  id            String      @id @default(uuid())
+  user_id       String
+  user          User        @relation(fields: [user_id], references: [id])
+  assignment_id String?
+  assignment    Assignment? @relation(fields: [assignment_id], references: [id])
+  latitude      Float
+  longitude     Float
+  distance_m    Float?
+  in_range      Boolean     @default(true)
+  created_at    DateTime    @default(now())
+
+  @@index([user_id])
+  @@index([assignment_id])
+  @@map("location_pings")
+}
+
+model UnassignRequest {
+  id            String         @id @default(uuid())
+  assignment_id String
+  assignment    Assignment     @relation(fields: [assignment_id], references: [id])
+  officer_id    String
+  officer       User           @relation(fields: [officer_id], references: [id])
+  reason        String
+  status        UnassignStatus @default(pending)
+  reviewed_by   String?
+  created_at    DateTime       @default(now())
+  reviewed_at   DateTime?
+
+  @@index([status])
+  @@map("unassign_requests")
+}
+
+model ModelFeedbackBatch {
+  batch_id          String      @id @default(uuid())
+  month             DateTime    @unique @db.Date
+  model_version     String      @db.VarChar(50)
+  total_validations Int
+  true_positives    Int
+  false_positives   Int
+  false_negatives   Int
+  accuracy_score    Float
+  status            BatchStatus @default(draft)
+  submitted_at      DateTime?
+  created_at        DateTime    @default(now())
+
+  @@map("model_feedback_batches")
+}

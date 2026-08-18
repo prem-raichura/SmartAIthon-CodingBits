@@ -1,0 +1,50 @@
+[
+  {
+    "name": "SCOOTER",
+    "count": 95440
+  },
+  {
+    "name": "CAR",
+    "count": 87636
+  },
+  {
+    "name": "MOTOR CYCLE",
+    "count": 41269
+  },
+  {
+    "name": "PASSENGER AUTO",
+    "count": 37568
+  },
+  {
+    "name": "MAXI-CAB",
+    "count": 11836
+  },
+  {
+    "name": "LGV",
+    "count": 8289
+  },
+  {
+    "name": "GOODS AUTO",
+    "count": 2974
+  },
+  {
+    "name": "MOPED",
+    "count": 2111
+  },
+  {
+    "name": "PRIVATE BUS",
+    "count": 1656
+  },
+  {
+    "name": "VAN",
+    "count": 1524
+  },
+  {
+    "name": "TEMPO",
+    "count": 1286
+  },
+  {
+    "name": "BUS (BMTC/KSRTC)",
+    "count": 1244
+  }
+]

@@ -1,0 +1,426 @@
+[
+  {
+    "hotspot_id": "HOT-001",
+    "anomaly_alert": {
+      "z_score": 2.48,
+      "level": "High",
+      "message": "This zone is showing 2.5x its normal activity"
+    },
+    "impact_forecast": {
+      "if_enforced": {
+        "predicted_violations": 19,
+        "blockage_pct": 12.6,
+        "reduction_pct": 75
+      },
+      "if_not_enforced": {
+        "predicted_violations": 90,
+        "blockage_pct": 54.6,
+        "reduction_pct": 0
+      }
+    },
+    "cascade_risk": {
+      "affected_junctions": 1,
+      "lag_minutes": 20,
+      "correlation": 0.64
+    },
+    "officer_recommendation": {
+      "count": 3,
+      "reason": "Critical zone with 79 predicted violations"
+    },
+    "model_confidence": {
+      "psi_score": 0.11,
+      "level": "Stable"
+    },
+    "shap_drivers": [
+      {
+        "feature": "cell_mean_daily",
+        "value": 81.4,
+        "impact": "+RAISES",
+        "shap": 0.585
+      },
+      {
+        "feature": "same_dow_mean",
+        "value": 44.6,
+        "impact": "+RAISES",
+        "shap": 0.155
+      },
+      {
+        "feature": "roll_mean_7",
+        "value": 72.5,
+        "impact": "+RAISES",
+        "shap": 0.194
+      }
+    ]
+  },
+  {
+    "hotspot_id": "HOT-002",
+    "anomaly_alert": {
+      "z_score": -0.11,
+      "level": "Normal",
+      "message": "Activity within expected range"
+    },
+    "impact_forecast": {
+      "if_enforced": {
+        "predicted_violations": 26,
+        "blockage_pct": 12.8,
+        "reduction_pct": 75
+      },
+      "if_not_enforced": {
+        "predicted_violations": 120,
+        "blockage_pct": 55.5,
+        "reduction_pct": 0
+      }
+    },
+    "cascade_risk": {
+      "affected_junctions": 1,
+      "lag_minutes": 35,
+      "correlation": 0.54
+    },
+    "officer_recommendation": {
+      "count": 3,
+      "reason": "Critical zone with 105 predicted violations"
+    },
+    "model_confidence": {
+      "psi_score": 0.08,
+      "level": "Stable"
+    },
+    "shap_drivers": [
+      {
+        "feature": "cell_mean_daily",
+        "value": 55.3,
+        "impact": "+RAISES",
+        "shap": 0.497
+      },
+      {
+        "feature": "same_dow_mean",
+        "value": 46.5,
+        "impact": "+RAISES",
+        "shap": 0.192
+      },
+      {
+        "feature": "roll_mean_7",
+        "value": 110.7,
+        "impact": "+RAISES",
+        "shap": 0.112
+      }
+    ]
+  },
+  {
+    "hotspot_id": "HOT-003",
+    "anomaly_alert": {
+      "z_score": -0.98,
+      "level": "Normal",
+      "message": "Activity within expected range"
+    },
+    "impact_forecast": {
+      "if_enforced": {
+        "predicted_violations": 23,
+        "blockage_pct": 12.1,
+        "reduction_pct": 75
+      },
+      "if_not_enforced": {
+        "predicted_violations": 105,
+        "blockage_pct": 52.5,
+        "reduction_pct": 0
+      }
+    },
+    "cascade_risk": {
+      "affected_junctions": 2,
+      "lag_minutes": 20,
+      "correlation": 0.55
+    },
+    "officer_recommendation": {
+      "count": 3,
+      "reason": "Critical zone with 92 predicted violations"
+    },
+    "model_confidence": {
+      "psi_score": 0.27,
+      "level": "Stable"
+    },
+    "shap_drivers": [
+      {
+        "feature": "cell_mean_daily",
+        "value": 70.4,
+        "impact": "+RAISES",
+        "shap": 0.487
+      },
+      {
+        "feature": "same_dow_mean",
+        "value": 70.8,
+        "impact": "+RAISES",
+        "shap": 0.152
+      },
+      {
+        "feature": "roll_mean_7",
+        "value": 66.7,
+        "impact": "+RAISES",
+        "shap": 0.15
+      }
+    ]
+  },
+  {
+    "hotspot_id": "HOT-004",
+    "anomaly_alert": {
+      "z_score": 2.67,
+      "level": "High",
+      "message": "This zone is showing 2.7x its normal activity"
+    },
+    "impact_forecast": {
+      "if_enforced": {
+        "predicted_violations": 18,
+        "blockage_pct": 9.8,
+        "reduction_pct": 75
+      },
+      "if_not_enforced": {
+        "predicted_violations": 82,
+        "blockage_pct": 42.2,
+        "reduction_pct": 0
+      }
+    },
+    "cascade_risk": {
+      "affected_junctions": 2,
+      "lag_minutes": 20,
+      "correlation": 0.66
+    },
+    "officer_recommendation": {
+      "count": 3,
+      "reason": "Critical zone with 72 predicted violations"
+    },
+    "model_confidence": {
+      "psi_score": 0.26,
+      "level": "Stable"
+    },
+    "shap_drivers": [
+      {
+        "feature": "cell_mean_daily",
+        "value": 68.9,
+        "impact": "+RAISES",
+        "shap": 0.586
+      },
+      {
+        "feature": "same_dow_mean",
+        "value": 28.1,
+        "impact": "+RAISES",
+        "shap": 0.23
+      },
+      {
+        "feature": "roll_mean_7",
+        "value": 88.0,
+        "impact": "+RAISES",
+        "shap": 0.18
+      }
+    ]
+  },
+  {
+    "hotspot_id": "HOT-005",
+    "anomaly_alert": {
+      "z_score": 2.18,
+      "level": "High",
+      "message": "This zone is showing 2.2x its normal activity"
+    },
+    "impact_forecast": {
+      "if_enforced": {
+        "predicted_violations": 11,
+        "blockage_pct": 7.2,
+        "reduction_pct": 75
+      },
+      "if_not_enforced": {
+        "predicted_violations": 54,
+        "blockage_pct": 31.2,
+        "reduction_pct": 0
+      }
+    },
+    "cascade_risk": {
+      "affected_junctions": 3,
+      "lag_minutes": 35,
+      "correlation": 0.63
+    },
+    "officer_recommendation": {
+      "count": 2,
+      "reason": "Critical zone with 47 predicted violations"
+    },
+    "model_confidence": {
+      "psi_score": 0.25,
+      "level": "Drift Detected"
+    },
+    "shap_drivers": [
+      {
+        "feature": "cell_mean_daily",
+        "value": 104.1,
+        "impact": "+RAISES",
+        "shap": 0.339
+      },
+      {
+        "feature": "same_dow_mean",
+        "value": 41.2,
+        "impact": "+RAISES",
+        "shap": 0.193
+      },
+      {
+        "feature": "roll_mean_7",
+        "value": 113.9,
+        "impact": "+RAISES",
+        "shap": 0.123
+      }
+    ]
+  },
+  {
+    "hotspot_id": "HOT-006",
+    "anomaly_alert": {
+      "z_score": 2.28,
+      "level": "High",
+      "message": "This zone is showing 2.3x its normal activity"
+    },
+    "impact_forecast": {
+      "if_enforced": {
+        "predicted_violations": 11,
+        "blockage_pct": 7.3,
+        "reduction_pct": 75
+      },
+      "if_not_enforced": {
+        "predicted_violations": 50,
+        "blockage_pct": 31.9,
+        "reduction_pct": 0
+      }
+    },
+    "cascade_risk": {
+      "affected_junctions": 1,
+      "lag_minutes": 35,
+      "correlation": 0.6
+    },
+    "officer_recommendation": {
+      "count": 2,
+      "reason": "Critical zone with 44 predicted violations"
+    },
+    "model_confidence": {
+      "psi_score": 0.15,
+      "level": "Stable"
+    },
+    "shap_drivers": [
+      {
+        "feature": "cell_mean_daily",
+        "value": 98.6,
+        "impact": "+RAISES",
+        "shap": 0.585
+      },
+      {
+        "feature": "same_dow_mean",
+        "value": 36.9,
+        "impact": "+RAISES",
+        "shap": 0.204
+      },
+      {
+        "feature": "roll_mean_7",
+        "value": 131.5,
+        "impact": "+RAISES",
+        "shap": 0.119
+      }
+    ]
+  },
+  {
+    "hotspot_id": "HOT-007",
+    "anomaly_alert": {
+      "z_score": 2.47,
+      "level": "High",
+      "message": "This zone is showing 2.5x its normal activity"
+    },
+    "impact_forecast": {
+      "if_enforced": {
+        "predicted_violations": 9,
+        "blockage_pct": 6.8,
+        "reduction_pct": 75
+      },
+      "if_not_enforced": {
+        "predicted_violations": 42,
+        "blockage_pct": 29.4,
+        "reduction_pct": 0
+      }
+    },
+    "cascade_risk": {
+      "affected_junctions": 3,
+      "lag_minutes": 15,
+      "correlation": 0.74
+    },
+    "officer_recommendation": {
+      "count": 2,
+      "reason": "Critical zone with 37 predicted violations"
+    },
+    "model_confidence": {
+      "psi_score": 0.2,
+      "level": "Stable"
+    },
+    "shap_drivers": [
+      {
+        "feature": "cell_mean_daily",
+        "value": 87.5,
+        "impact": "+RAISES",
+        "shap": 0.54
+      },
+      {
+        "feature": "same_dow_mean",
+        "value": 94.8,
+        "impact": "+RAISES",
+        "shap": 0.108
+      },
+      {
+        "feature": "roll_mean_7",
+        "value": 132.6,
+        "impact": "+RAISES",
+        "shap": 0.091
+      }
+    ]
+  },
+  {
+    "hotspot_id": "HOT-008",
+    "anomaly_alert": {
+      "z_score": -0.67,
+      "level": "Normal",
+      "message": "Activity within expected range"
+    },
+    "impact_forecast": {
+      "if_enforced": {
+        "predicted_violations": 13,
+        "blockage_pct": 5.7,
+        "reduction_pct": 75
+      },
+      "if_not_enforced": {
+        "predicted_violations": 63,
+        "blockage_pct": 24.6,
+        "reduction_pct": 0
+      }
+    },
+    "cascade_risk": {
+      "affected_junctions": 1,
+      "lag_minutes": 25,
+      "correlation": 0.74
+    },
+    "officer_recommendation": {
+      "count": 2,
+      "reason": "Critical zone with 55 predicted violations"
+    },
+    "model_confidence": {
+      "psi_score": 0.27,
+      "level": "Stable"
+    },
+    "shap_drivers": [
+      {
+        "feature": "cell_mean_daily",
+        "value": 98.7,
+        "impact": "+RAISES",
+        "shap": 0.492
+      },
+      {
+        "feature": "same_dow_mean",
+        "value": 57.2,
+        "impact": "+RAISES",
+        "shap": 0.195
+      },
+      {
+        "feature": "roll_mean_7",
+        "value": 76.4,
+        "impact": "+RAISES",
+        "shap": 0.192
+      }
+    ]
+  }
+]

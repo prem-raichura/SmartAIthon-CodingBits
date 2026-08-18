@@ -1,0 +1,434 @@
+[
+  {
+    "name": "Upparpet",
+    "lat": 12.97667,
+    "lon": 77.57739,
+    "total_tickets": 34468,
+    "approval_rate": 0.447,
+    "reject_rate": 0.553
+  },
+  {
+    "name": "Shivajinagar",
+    "lat": 12.98214,
+    "lon": 77.60704,
+    "total_tickets": 28044,
+    "approval_rate": 0.393,
+    "reject_rate": 0.607
+  },
+  {
+    "name": "Malleshwaram",
+    "lat": 13.00548,
+    "lon": 77.55984,
+    "total_tickets": 22200,
+    "approval_rate": 0.382,
+    "reject_rate": 0.618
+  },
+  {
+    "name": "HAL Old Airport",
+    "lat": 12.94342,
+    "lon": 77.69676,
+    "total_tickets": 20819,
+    "approval_rate": 0.372,
+    "reject_rate": 0.628
+  },
+  {
+    "name": "City Market",
+    "lat": 12.9645,
+    "lon": 77.57713,
+    "total_tickets": 17646,
+    "approval_rate": 0.349,
+    "reject_rate": 0.651
+  },
+  {
+    "name": "Vijayanagara",
+    "lat": 12.97779,
+    "lon": 77.54283,
+    "total_tickets": 14652,
+    "approval_rate": 0.426,
+    "reject_rate": 0.574
+  },
+  {
+    "name": "Rajajinagar",
+    "lat": 12.99855,
+    "lon": 77.54861,
+    "total_tickets": 10998,
+    "approval_rate": 0.367,
+    "reject_rate": 0.633
+  },
+  {
+    "name": "Kodigehalli",
+    "lat": 13.0603,
+    "lon": 77.58627,
+    "total_tickets": 10916,
+    "approval_rate": 0.216,
+    "reject_rate": 0.784
+  },
+  {
+    "name": "Magadi Road",
+    "lat": 12.97491,
+    "lon": 77.55365,
+    "total_tickets": 8558,
+    "approval_rate": 0.386,
+    "reject_rate": 0.614
+  },
+  {
+    "name": "Jeevanbheemanagar",
+    "lat": 12.96835,
+    "lon": 77.64702,
+    "total_tickets": 6736,
+    "approval_rate": 0.461,
+    "reject_rate": 0.539
+  },
+  {
+    "name": "K.R. Pura",
+    "lat": 13.01059,
+    "lon": 77.69773,
+    "total_tickets": 6546,
+    "approval_rate": 0.332,
+    "reject_rate": 0.668
+  },
+  {
+    "name": "Halasuru Gate",
+    "lat": 12.96563,
+    "lon": 77.58384,
+    "total_tickets": 6294,
+    "approval_rate": 0.37,
+    "reject_rate": 0.63
+  },
+  {
+    "name": "Mahadevapura",
+    "lat": 12.99351,
+    "lon": 77.69474,
+    "total_tickets": 6187,
+    "approval_rate": 0.348,
+    "reject_rate": 0.652
+  },
+  {
+    "name": "Chikkajala",
+    "lat": 13.18278,
+    "lon": 77.67107,
+    "total_tickets": 5834,
+    "approval_rate": 0.383,
+    "reject_rate": 0.617
+  },
+  {
+    "name": "HSR Layout",
+    "lat": 12.90935,
+    "lon": 77.63666,
+    "total_tickets": 5018,
+    "approval_rate": 0.383,
+    "reject_rate": 0.617
+  },
+  {
+    "name": "Bellandur",
+    "lat": 12.91813,
+    "lon": 77.67914,
+    "total_tickets": 4964,
+    "approval_rate": 0.388,
+    "reject_rate": 0.612
+  },
+  {
+    "name": "High ground",
+    "lat": 12.99016,
+    "lon": 77.5874,
+    "total_tickets": 4951,
+    "approval_rate": 0.514,
+    "reject_rate": 0.486
+  },
+  {
+    "name": "Byatarayanapura",
+    "lat": 12.95265,
+    "lon": 77.53188,
+    "total_tickets": 4555,
+    "approval_rate": 0.375,
+    "reject_rate": 0.625
+  },
+  {
+    "name": "Electronic City",
+    "lat": 12.84875,
+    "lon": 77.6563,
+    "total_tickets": 4333,
+    "approval_rate": 0.285,
+    "reject_rate": 0.715
+  },
+  {
+    "name": "Pulikeshinagar(F.Town)",
+    "lat": 12.99572,
+    "lon": 77.61365,
+    "total_tickets": 4136,
+    "approval_rate": 0.383,
+    "reject_rate": 0.617
+  },
+  {
+    "name": "Halasur",
+    "lat": 12.9729,
+    "lon": 77.62119,
+    "total_tickets": 4011,
+    "approval_rate": 0.447,
+    "reject_rate": 0.553
+  },
+  {
+    "name": "Jayanagara",
+    "lat": 12.92581,
+    "lon": 77.58347,
+    "total_tickets": 3813,
+    "approval_rate": 0.418,
+    "reject_rate": 0.582
+  },
+  {
+    "name": "Chamarajpet",
+    "lat": 12.97022,
+    "lon": 77.57095,
+    "total_tickets": 3795,
+    "approval_rate": 0.365,
+    "reject_rate": 0.635
+  },
+  {
+    "name": "Banaswadi",
+    "lat": 12.99925,
+    "lon": 77.66277,
+    "total_tickets": 3759,
+    "approval_rate": 0.349,
+    "reject_rate": 0.651
+  },
+  {
+    "name": "Basavanagudi",
+    "lat": 12.94318,
+    "lon": 77.57112,
+    "total_tickets": 3604,
+    "approval_rate": 0.382,
+    "reject_rate": 0.618
+  },
+  {
+    "name": "Ashok Nagar",
+    "lat": 12.96541,
+    "lon": 77.60452,
+    "total_tickets": 3524,
+    "approval_rate": 0.481,
+    "reject_rate": 0.519
+  },
+  {
+    "name": "Adugodi",
+    "lat": 12.93497,
+    "lon": 77.62082,
+    "total_tickets": 3332,
+    "approval_rate": 0.329,
+    "reject_rate": 0.671
+  },
+  {
+    "name": "Cubbon Park",
+    "lat": 12.9753,
+    "lon": 77.59593,
+    "total_tickets": 3255,
+    "approval_rate": 0.423,
+    "reject_rate": 0.577
+  },
+  {
+    "name": "Hebbala",
+    "lat": 13.03906,
+    "lon": 77.59004,
+    "total_tickets": 3209,
+    "approval_rate": 0.32,
+    "reject_rate": 0.68
+  },
+  {
+    "name": "Wilson Garden",
+    "lat": 12.94686,
+    "lon": 77.58899,
+    "total_tickets": 3108,
+    "approval_rate": 0.355,
+    "reject_rate": 0.645
+  },
+  {
+    "name": "Sheshadripuram",
+    "lat": 12.99106,
+    "lon": 77.57299,
+    "total_tickets": 3090,
+    "approval_rate": 0.408,
+    "reject_rate": 0.592
+  },
+  {
+    "name": "Mico Layout",
+    "lat": 12.92105,
+    "lon": 77.60585,
+    "total_tickets": 2588,
+    "approval_rate": 0.463,
+    "reject_rate": 0.537
+  },
+  {
+    "name": "Yeshwanthpura",
+    "lat": 13.02697,
+    "lon": 77.54635,
+    "total_tickets": 2587,
+    "approval_rate": 0.435,
+    "reject_rate": 0.565
+  },
+  {
+    "name": "Yelahanka",
+    "lat": 13.10076,
+    "lon": 77.59625,
+    "total_tickets": 2440,
+    "approval_rate": 0.475,
+    "reject_rate": 0.525
+  },
+  {
+    "name": "Hulimavu",
+    "lat": 12.88244,
+    "lon": 77.6263,
+    "total_tickets": 2395,
+    "approval_rate": 0.313,
+    "reject_rate": 0.687
+  },
+  {
+    "name": "Whitefield",
+    "lat": 12.95755,
+    "lon": 77.73144,
+    "total_tickets": 2303,
+    "approval_rate": 0.313,
+    "reject_rate": 0.687
+  },
+  {
+    "name": "R.T. Nagar",
+    "lat": 13.01753,
+    "lon": 77.59137,
+    "total_tickets": 1736,
+    "approval_rate": 0.534,
+    "reject_rate": 0.466
+  },
+  {
+    "name": "J.P. Nagar",
+    "lat": 12.90467,
+    "lon": 77.58773,
+    "total_tickets": 1637,
+    "approval_rate": 0.396,
+    "reject_rate": 0.604
+  },
+  {
+    "name": "Madiwala",
+    "lat": 12.91798,
+    "lon": 77.62248,
+    "total_tickets": 1563,
+    "approval_rate": 0.315,
+    "reject_rate": 0.685
+  },
+  {
+    "name": "V.V.Puram (C.Pet)",
+    "lat": 12.95891,
+    "lon": 77.57491,
+    "total_tickets": 1556,
+    "approval_rate": 0.277,
+    "reject_rate": 0.723
+  },
+  {
+    "name": "Sadashivanagar",
+    "lat": 13.02061,
+    "lon": 77.5756,
+    "total_tickets": 1445,
+    "approval_rate": 0.345,
+    "reject_rate": 0.655
+  },
+  {
+    "name": "Kamakshipalya",
+    "lat": 12.98975,
+    "lon": 77.51095,
+    "total_tickets": 1431,
+    "approval_rate": 0.442,
+    "reject_rate": 0.558
+  },
+  {
+    "name": "Banashankari",
+    "lat": 12.92699,
+    "lon": 77.55413,
+    "total_tickets": 1202,
+    "approval_rate": 0.436,
+    "reject_rate": 0.564
+  },
+  {
+    "name": "Jalahalli",
+    "lat": 13.05236,
+    "lon": 77.54029,
+    "total_tickets": 1160,
+    "approval_rate": 0.367,
+    "reject_rate": 0.633
+  },
+  {
+    "name": "Jnanabharathi",
+    "lat": 12.96194,
+    "lon": 77.5081,
+    "total_tickets": 1063,
+    "approval_rate": 0.552,
+    "reject_rate": 0.448
+  },
+  {
+    "name": "Peenya",
+    "lat": 13.03711,
+    "lon": 77.51195,
+    "total_tickets": 974,
+    "approval_rate": 0.37,
+    "reject_rate": 0.63
+  },
+  {
+    "name": "Devanahalli Airport",
+    "lat": 13.19934,
+    "lon": 77.68776,
+    "total_tickets": 940,
+    "approval_rate": 0.333,
+    "reject_rate": 0.667
+  },
+  {
+    "name": "Hennuru",
+    "lat": 13.05801,
+    "lon": 77.63714,
+    "total_tickets": 892,
+    "approval_rate": 0.336,
+    "reject_rate": 0.664
+  },
+  {
+    "name": "K.G. Halli",
+    "lat": 13.02946,
+    "lon": 77.62246,
+    "total_tickets": 892,
+    "approval_rate": 0.335,
+    "reject_rate": 0.665
+  },
+  {
+    "name": "Thalagattapura",
+    "lat": 12.8787,
+    "lon": 77.55362,
+    "total_tickets": 870,
+    "approval_rate": 0.447,
+    "reject_rate": 0.553
+  },
+  {
+    "name": "K.S. Layout",
+    "lat": 12.9059,
+    "lon": 77.55562,
+    "total_tickets": 828,
+    "approval_rate": 0.412,
+    "reject_rate": 0.588
+  },
+  {
+    "name": "Chikkabanavara",
+    "lat": 13.05106,
+    "lon": 77.50425,
+    "total_tickets": 785,
+    "approval_rate": 0.381,
+    "reject_rate": 0.619
+  },
+  {
+    "name": "Kengeri",
+    "lat": 12.92015,
+    "lon": 77.49858,
+    "total_tickets": 464,
+    "approval_rate": 0.496,
+    "reject_rate": 0.504
+  },
+  {
+    "name": "No Police Station",
+    "lat": 13.01257,
+    "lon": 77.53906,
+    "total_tickets": 339,
+    "approval_rate": 0.265,
+    "reject_rate": 0.735
+  }
+]

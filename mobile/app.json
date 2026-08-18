@@ -1,0 +1,90 @@
+{
+  "expo": {
+    "name": "ParkVUE",
+    "slug": "parkvue-officer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "parkvue",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "icon": "./assets/logo.png",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.parkvue.officer",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Your location is used to confirm you are patrolling your assigned zone.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Background location lets command confirm you remain in your assigned zone for the duration of your patrol.",
+        "NSCameraUsageDescription": "The camera is used to capture a GPS-stamped photo for your field report.",
+        "UIBackgroundModes": [
+          "location",
+          "fetch"
+        ],
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true,
+          "NSAllowsArbitraryLoads": true
+        }
+      }
+    },
+    "android": {
+      "package": "com.parkvue.officer",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION",
+        "android.permission.CAMERA"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Background location lets command confirm you remain in your assigned zone during patrol.",
+          "isIosBackgroundLocationEnabled": true,
+          "isAndroidBackgroundLocationEnabled": true
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "The camera is used to capture a GPS-stamped photo for your field report."
+        }
+      ],
+      "expo-notifications",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/logo.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/logo.png"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "8d190cf9-046a-4eff-8384-7db931dcdc9d"
+      }
+    },
+    "owner": "premraichura"
+  }
+}

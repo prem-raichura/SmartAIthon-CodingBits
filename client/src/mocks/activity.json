@@ -1,0 +1,44 @@
+[
+  {
+    "time": "2 mins ago",
+    "type": "hotspot_alert",
+    "message": "New Critical hotspot detected near Upparpet",
+    "severity": "high"
+  },
+  {
+    "time": "15 mins ago",
+    "type": "officer_assigned",
+    "message": "3 officers assigned to Shivajinagar hotspot",
+    "severity": "info"
+  },
+  {
+    "time": "32 mins ago",
+    "type": "csv_upload",
+    "message": "New CSV processed: 8,294 records added",
+    "severity": "info"
+  },
+  {
+    "time": "1 hour ago",
+    "type": "officer_request",
+    "message": "New officer registration from Malleshwaram",
+    "severity": "info"
+  },
+  {
+    "time": "2 hours ago",
+    "type": "cascade_warning",
+    "message": "3-junction cascade pattern detected in central zone",
+    "severity": "high"
+  },
+  {
+    "time": "3 hours ago",
+    "type": "anomaly",
+    "message": "Anomaly: HAL Old Airport showing 4.2x normal activity",
+    "severity": "medium"
+  },
+  {
+    "time": "5 hours ago",
+    "type": "enforcement",
+    "message": "Daily patrol report generated for 14 critical zones",
+    "severity": "info"
+  }
+]

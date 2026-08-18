@@ -1,0 +1,16 @@
+{
+  "total_violations": 298445,
+  "active_hotspots": 8,
+  "avg_congestion_score": 36.0,
+  "pending_approvals": 12,
+  "critical_zones": 4,
+  "predicted_today": 1103,
+  "approval_rate": 38.7,
+  "never_reviewed_pct": 42.0,
+  "top_violation": "WRONG PARKING",
+  "top_vehicle": "SCOOTER",
+  "dataset_date_range": {
+    "start": "2023-11-09",
+    "end": "2024-04-08"
+  }
+}

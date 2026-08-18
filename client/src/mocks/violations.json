@@ -1,0 +1,62 @@
+[
+  {
+    "name": "WRONG PARKING",
+    "count": 164974
+  },
+  {
+    "name": "NO PARKING",
+    "count": 139048
+  },
+  {
+    "name": "PARKING IN A MAIN ROAD",
+    "count": 23943
+  },
+  {
+    "name": "DEFECTIVE NUMBER PLATE",
+    "count": 7847
+  },
+  {
+    "name": "PARKING ON FOOTPATH",
+    "count": 3757
+  },
+  {
+    "name": "PARKING NEAR BUSTOP/SCHOOL/HOSPITAL ETC",
+    "count": 2403
+  },
+  {
+    "name": "DOUBLE PARKING",
+    "count": 2037
+  },
+  {
+    "name": "PARKING NEAR ROAD CROSSING",
+    "count": 1687
+  },
+  {
+    "name": "REFUSE TO GO FOR HIRE",
+    "count": 887
+  },
+  {
+    "name": "PARKING NEAR TRAFFIC LIGHT OR ZEBRA CROSS",
+    "count": 525
+  },
+  {
+    "name": "PARKING OPPOSITE TO ANOTHER PARKED VEHICLE",
+    "count": 486
+  },
+  {
+    "name": "USING BLACK FILM/OTHER MATERIALS",
+    "count": 248
+  },
+  {
+    "name": "PARKING OTHER THAN BUS STOP",
+    "count": 242
+  },
+  {
+    "name": "DEMANDING EXCESS FARE",
+    "count": 240
+  },
+  {
+    "name": "WITHOUT SIDE MIRROR",
+    "count": 47
+  }
+]

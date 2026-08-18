@@ -1,0 +1,6 @@
+cell,date,pred,severity,officers,risk_score
+882a1008b3fffff,2024-05-01,4.2,High,2,9.1
+882a100893fffff,2024-05-01,1.8,Low,1,2.3
+882a1008a3fffff,2024-05-01,6.5,Critical,3,14.7
+882a100897fffff,2024-05-01,2.9,Medium,2,5.4
+882a1008abfffff,2024-05-01,0.3,Low,1,0.8
