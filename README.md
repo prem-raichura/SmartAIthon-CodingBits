@@ -1595,8 +1595,8 @@ Kadi Sarva Vishwavidyalaya, Gandhinagar
 
 <br/>
 
-| | |
-|:--|:--|
+| |
+|:--|
 | 👩‍💻 **Zenisha Devani** | 
 | 👨‍💻 **Rohan Thakar** | 
 | 👩‍💻 **Charmi Padh** | 
