@@ -53,15 +53,24 @@ export async function approve(id: string, adminId: string) {
     return created;
   });
 
-  // Fire-and-forget: SMTP can take several seconds — don't block the approval
-  // response on it (that made the UI feel unresponsive / "no toast"). Mail failure
-  // is logged but never fails the approval (the officer is already created).
-  void sendCredentials(req.email, username, tempPassword).catch((e) => {
+  // Must be awaited. A serverless function is frozen the moment it responds, so
+  // a fire-and-forget send is killed mid-handshake and the officer never gets
+  // their credentials. Failure is still non-fatal — the account already exists
+  // and temp_password is returned so an admin can relay it by hand.
+  let email_sent = false;
+  let email_error: string | undefined;
+  try {
+    await sendCredentials(req.email, username, tempPassword);
+    email_sent = true;
+  } catch (e) {
+    email_error = e instanceof Error ? e.message : String(e);
     console.error(`[approve] credentials email failed for ${req.email}:`, e);
-  });
+  }
+
   const { password: _, ...safe } = user;
-  // temp_password returned so the admin can always relay creds (mail is async/best-effort).
-  return { ...safe, temp_password: tempPassword };
+  // temp_password is always returned so the admin can relay credentials even
+  // when mail delivery fails; email_sent tells the UI which case it is.
+  return { ...safe, temp_password: tempPassword, email_sent, email_error };
 }
 
 export async function reject(id: string, adminId: string) {

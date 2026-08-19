@@ -13,20 +13,29 @@ function getTransporter(): nodemailer.Transporter {
 
   if (env.EMAIL_MODE === 'smtp') {
     const port = env.SMTP_PORT ?? 587;
-    transporter = nodemailer.createTransport({
+    // Pooling keeps sockets open between sends, which suits a long-lived
+    // process but not a serverless instance that is frozen right after it
+    // responds — a pooled connection there is dead by the next invocation.
+    const serverless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
+    const common = {
       host: env.SMTP_HOST,
       port,
       // 465 is implicit TLS; 587/25 start plaintext and upgrade via STARTTLS.
       secure: port === 465,
       requireTLS: port !== 465,
       auth: { user: env.SMTP_USER, pass: env.SMTP_PASS },
+      // Keep every phase inside the function's execution budget so a hung
+      // handshake surfaces as a logged error rather than a killed invocation.
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 15_000,
+    };
+
+    transporter = serverless
+      ? nodemailer.createTransport(common)
       // Gmail throttles aggressively on burst sends (e.g. the reminder job).
-      pool: true,
-      maxConnections: 3,
-      connectionTimeout: 15_000,
-      greetingTimeout: 15_000,
-      socketTimeout: 20_000,
-    });
+      : nodemailer.createTransport({ ...common, pool: true, maxConnections: 3 });
   } else {
     // jsonTransport never opens a socket, so stub mode works fully offline.
     // (The previous Ethereal test account required network on every boot and
