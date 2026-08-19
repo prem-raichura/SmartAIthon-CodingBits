@@ -25,7 +25,9 @@
     },
     "production": {
       "autoIncrement": true,
-      "android": { "buildType": "apk" },
+      "android": {
+        "buildType": "apk"
+      },
       "env": {
         "EXPO_PUBLIC_API_URL": "https://parkvue-api.vercel.app/api"
       }
