@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { motion, useInView, animate } from 'framer-motion'
+import { motion, AnimatePresence, useInView, animate } from 'framer-motion'
 import {
   ChevronDown, ArrowRight,
   Car, MapPin, AlertTriangle, Activity, Navigation,
   FileText, Building2, Clock, Layers,
   Code2, MessageSquare, Briefcase,
   Bell, Camera, CheckCircle2, Shield, Smartphone,
+  Download, X, ShieldCheck,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { cn, formatNumber } from '../lib/utils'
@@ -296,11 +297,131 @@ function Navbar() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// OFFICER APK DOWNLOAD MODAL
+// ─────────────────────────────────────────────────────────────────────────────
+
+const APK_FILE_ID = '1R3sV99athsq63b8X3V__uW7IDbDjFASf'
+// usercontent host + confirm=t skips the Drive virus-scan interstitial for large files
+const APK_DOWNLOAD_URL = `https://drive.usercontent.google.com/download?id=${APK_FILE_ID}&export=download&confirm=t`
+
+function ApkDownloadModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [open, onClose])
+
+  const handleDownload = () => {
+    const a = document.createElement('a')
+    a.href = APK_DOWNLOAD_URL
+    a.download = 'ParkVUE-Officer.apk'
+    a.rel = 'noopener'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    toast.success('Download started', { description: 'Check your browser downloads for the APK.' })
+  }
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={onClose}
+          role="dialog" aria-modal="true" aria-labelledby="apk-modal-title"
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" />
+
+          {/* Card */}
+          <motion.div
+            className="relative w-full max-w-md rounded-2xl bg-white shadow-2xl border border-gray-200 overflow-hidden"
+            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.97 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Gradient top bar */}
+            <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg,#1e3a8a,#06b6d4,#3b82f6)' }} />
+
+            <button
+              onClick={onClose}
+              aria-label="Close"
+              className="absolute top-4 right-4 p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+            >
+              <X size={18} />
+            </button>
+
+            <div className="px-7 pt-7 pb-6">
+              {/* Icon */}
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
+                style={{ background: 'linear-gradient(135deg, #1e3a8a, #06b6d4)' }}
+              >
+                <Smartphone size={26} className="text-white" />
+              </div>
+
+              <h3 id="apk-modal-title" className="text-xl font-bold text-gray-900 mb-1.5">
+                ParkVUE Officer App
+              </h3>
+              <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                Field companion for enforcement officers — live assignments, on-site
+                capture, and instant violation reporting.
+              </p>
+
+              {/* Download row */}
+              <button
+                onClick={handleDownload}
+                className="group w-full flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:border-brand-500/60 hover:bg-brand-50/40 transition-all duration-200 text-left"
+              >
+                <div
+                  className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-white transition-transform duration-200 group-hover:scale-105"
+                  style={{ background: 'linear-gradient(135deg, #06b6d4, #1e3a8a)' }}
+                >
+                  <Download size={20} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-semibold text-gray-900">Download APK</div>
+                  <div className="text-xs text-gray-500">Android · Direct install file</div>
+                </div>
+                <ArrowRight
+                  size={16}
+                  className="shrink-0 text-gray-300 group-hover:text-brand-600 group-hover:translate-x-0.5 transition-all duration-200"
+                />
+              </button>
+
+              {/* Note */}
+              <div className="mt-5 flex items-start gap-2.5 text-[11px] leading-relaxed text-gray-500">
+                <ShieldCheck size={14} className="shrink-0 mt-px text-brand-600" />
+                <span>
+                  Restricted to authorised enforcement officers. Android may ask you to
+                  allow installs from unknown sources before opening the file.
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // HERO SECTION
 // ─────────────────────────────────────────────────────────────────────────────
 
 function HeroSection() {
   const navigate = useNavigate()
+  const [apkModalOpen, setApkModalOpen] = useState(false)
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-sky-100 via-blue-50 to-slate-50">
@@ -361,7 +482,7 @@ function HeroSection() {
             style={{ background: 'linear-gradient(135deg, #1e3a8a, #06b6d4)' }}>
             Get Started <ArrowRight size={16} />
           </motion.button>
-          <motion.button onClick={() => toast.info('Mobile app coming soon')}
+          <motion.button onClick={() => setApkModalOpen(true)}
             whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-sm transition-all duration-200 border border-gray-300 text-gray-600 hover:border-brand-500/50 hover:text-brand-700 bg-white/60 hover:bg-white">
             <div className="flex flex-col items-start leading-tight">
@@ -381,6 +502,8 @@ function HeroSection() {
         <span className="text-[10px] uppercase tracking-widest">Scroll</span>
         <ChevronDown size={16} />
       </motion.div>
+
+      <ApkDownloadModal open={apkModalOpen} onClose={() => setApkModalOpen(false)} />
     </section>
   )
 }
