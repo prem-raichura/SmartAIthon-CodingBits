@@ -1595,12 +1595,10 @@ Kadi Sarva Vishwavidyalaya, Gandhinagar
 
 <br/>
 
-| |
-|:--|
+| 👨‍💻 **Prem Raichura** |
+| 👩‍💻 **Charmi Padh** | 
 | 👩‍💻 **Zenisha Devani** | 
 | 👨‍💻 **Rohan Thakar** | 
-| 👩‍💻 **Charmi Padh** | 
-| 👨‍💻 **Prem Raichura** |
 
 <br/>
 
