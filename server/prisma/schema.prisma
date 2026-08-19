@@ -1,6 +1,9 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
+  // Vercel functions run on RHEL/OpenSSL 3; without this the generated client
+  // can ship only the local engine and fail to initialise once deployed.
+  binaryTargets   = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
