@@ -5,10 +5,11 @@ import { toast } from 'sonner'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search, Award, ChevronLeft, ChevronRight,
-  Check, X, Activity, TrendingUp, Info, Eye,
+  Check, X, Activity, TrendingUp, Info, Eye, Trash2,
   MapPin, AlertTriangle, Clock, UserMinus, ShieldAlert, Loader2,
 } from 'lucide-react'
 import { useOfficers, usePendingOfficers } from '../hooks/useMockData'
+import { deleteOfficer } from '../lib/api'
 import type { Officer, OfficerStatus, PendingOfficer } from '../types'
 import { Dialog } from '../components/ui/Dialog'
 import { StatCard } from '../components/ui/StatCard'
@@ -120,10 +121,11 @@ function EmptyState({ icon: Icon, title, sub }: {
 
 // ─── Officer Card ─────────────────────────────────────────────────────────────
 
-function OfficerCard({ officer, delay, onViewProfile }: {
+function OfficerCard({ officer, delay, onViewProfile, onDelete }: {
   officer: Officer
   delay: number
   onViewProfile: (o: Officer) => void
+  onDelete: (o: Officer) => void
 }) {
   const cfg = STATUS_CONFIG[officer.status]
   const initials = getInitials(officer.badge_id)
@@ -191,10 +193,11 @@ function OfficerCard({ officer, delay, onViewProfile }: {
       </div>
 
       {/* CTA */}
+      <div className="mt-auto flex items-center gap-2">
       <button
         onClick={() => onViewProfile(officer)}
         className={cn(
-          'mt-auto flex items-center justify-center gap-1.5 text-xs font-medium',
+          'flex-1 flex items-center justify-center gap-1.5 text-xs font-medium',
           'rounded-xl py-1.5 border',
           'text-brand-600 dark:text-brand-400',
           'border-brand-200 dark:border-brand-800',
@@ -206,6 +209,23 @@ function OfficerCard({ officer, delay, onViewProfile }: {
         <Eye size={12} />
         View Profile
       </button>
+        <button
+          onClick={() => onDelete(officer)}
+          aria-label={`Delete ${officer.name}`}
+          className={cn(
+            'flex items-center justify-center gap-1.5 text-xs font-medium',
+            'rounded-xl py-1.5 px-3 border',
+            'text-critical-600 dark:text-critical-400',
+            'border-critical-200 dark:border-critical-800',
+            'bg-critical-50 dark:bg-critical-950/30',
+            'hover:bg-critical-100 dark:hover:bg-critical-900/40',
+            'transition-colors duration-150',
+          )}
+        >
+          <Trash2 size={12} />
+          Delete
+        </button>
+      </div>
     </motion.div>
   )
 }
@@ -332,6 +352,8 @@ export default function OfficerManagement() {
   const [profileOfficer, setProfileOfficer] = useState<Officer | null>(null)
   const [pendingDetail, setPendingDetail] = useState<PendingOfficer | null>(null)
   const [rejectTarget, setRejectTarget] = useState<PendingOfficer | null>(null)
+  const [deleteTarget, setDeleteTarget] = useState<Officer | null>(null)
+  const [deleting, setDeleting] = useState(false)
 
   // Live lifecycle data (assigned / unassign-requests / geofence alerts)
   const [assignments, setAssignments] = useState<AssignmentRow[] | null>(null)
@@ -420,6 +442,25 @@ export default function OfficerManagement() {
       }
     } catch (e) {
       toast.error(e instanceof Error ? e.message : 'Approve failed')
+    }
+  }
+
+  async function handleDeleteConfirm() {
+    if (!deleteTarget || deleting) return
+    const target = deleteTarget
+    setDeleting(true)
+    try {
+      const res = await deleteOfficer(target.id)
+      setDeleteTarget(null)
+      refetchOfficers()
+      const extra = res.removed.field_reports > 0 || res.removed.assignments > 0
+        ? ` (${res.removed.assignments} assignment(s), ${res.removed.field_reports} field report(s) removed)`
+        : ''
+      toast.success(`${target.name} deleted${extra}`)
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : 'Delete failed')
+    } finally {
+      setDeleting(false)
     }
   }
 
@@ -583,6 +624,7 @@ export default function OfficerManagement() {
                         officer={officer}
                         delay={idx * 0.04}
                         onViewProfile={setProfileOfficer}
+                        onDelete={setDeleteTarget}
                       />
                     ))}
                     {pageData.length === 0 && (
@@ -874,6 +916,47 @@ export default function OfficerManagement() {
       </Dialog>
 
       {/* ── Reject Confirm Dialog ── */}
+      <Dialog
+        open={!!deleteTarget}
+        onClose={() => { if (!deleting) setDeleteTarget(null) }}
+        title="Delete officer"
+        description={deleteTarget
+          ? `Permanently delete ${deleteTarget.name} (${deleteTarget.badge_id})? This cannot be undone.`
+          : undefined}
+      >
+        {deleteTarget && (
+          <div className="space-y-4">
+            <div className="rounded-xl border border-critical-200 bg-critical-50 p-3">
+              <p className="text-xs font-semibold text-critical-700 mb-1">This also removes</p>
+              <ul className="text-xs text-critical-700 list-disc pl-4 space-y-0.5">
+                <li>their patrol assignments</li>
+                <li>their submitted field reports and photos</li>
+                <li>their notifications and location history</li>
+              </ul>
+              <p className="mt-2 text-[11px] text-critical-600">
+                Field reports are ground-truth data used by Analytics. Consider exporting first.
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setDeleteTarget(null)}
+                disabled={deleting}
+                className="flex-1 rounded-xl border border-gray-200 py-2 text-sm font-semibold text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeleteConfirm}
+                disabled={deleting}
+                className="flex-1 rounded-xl bg-critical-600 py-2 text-sm font-semibold text-white hover:bg-critical-700 disabled:opacity-60"
+              >
+                {deleting ? 'Deleting…' : 'Delete officer'}
+              </button>
+            </div>
+          </div>
+        )}
+      </Dialog>
+
       <Dialog
         open={!!rejectTarget}
         onClose={() => setRejectTarget(null)}

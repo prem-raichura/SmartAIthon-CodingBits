@@ -146,6 +146,16 @@ export const getGeofenceBreaches = () => request<GeofenceBreach[]>(`/location/br
 export const getAssignments = (status?: string) =>
   request<unknown[]>(`/assignments${status ? `?status=${status}` : ''}`)
 
+export interface DeleteOfficerResult {
+  deleted: boolean
+  officer: { id: string; name: string }
+  removed: { assignments: number; field_reports: number }
+}
+
+/** Hard delete — also removes the officer's assignments and field reports. */
+export const deleteOfficer = (id: string) =>
+  request<DeleteOfficerResult>(`/officers/${id}`, { method: 'DELETE' })
+
 // ── field reports (officer submissions) ──────────────────────────────────────
 
 export interface FieldReport {

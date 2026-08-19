@@ -22,5 +22,7 @@ router.get('/activity',        controller.activity);
 router.post('/officers/approve/:id', requireRole('admin'), controller.approveOfficer);
 router.post('/officers/reject/:id',  requireRole('admin'), controller.rejectOfficer);
 router.post('/officers/assign',      requireRole('admin'), controller.assignOfficer);
+// Hard delete — removes the officer and every record that references them.
+router.delete('/officers/:id',       requireRole('admin'), controller.deleteOfficer);
 
 export default router;

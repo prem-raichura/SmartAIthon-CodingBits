@@ -23,3 +23,6 @@ export const rejectOfficer  = asyncHandler(async (req: Request, res: Response) =
 export const assignOfficer  = asyncHandler(async (req: Request, res: Response) => {
   res.status(201).json(await service.assignOfficer(req.body));
 });
+export const deleteOfficer  = asyncHandler(async (req: Request, res: Response) => {
+  res.json(await service.deleteOfficer(String(req.params.id), req.user!.id));
+});

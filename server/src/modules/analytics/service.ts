@@ -1,4 +1,5 @@
 import { prisma } from '../../lib/prisma.js';
+import { AppError } from '../../middleware/error.js';
 
 type LatestRun = Awaited<ReturnType<typeof queryLatestRun>>;
 
@@ -189,4 +190,73 @@ export async function assignOfficer(data: {
 
   const { create } = await import('../assignments/service.js');
   return create({ user_id: data.user_id, cell_id, run_id, time_limit: data.time_limit });
+}
+
+/**
+ * Permanently remove an officer and everything that references them.
+ *
+ * Deletion order matters: every FK into `users` is RESTRICT, and assignments are
+ * themselves referenced by notifications, validations, pings and unassign
+ * requests. Doing this in one transaction means a partial failure leaves nothing
+ * half-deleted.
+ *
+ * Field validations are ground-truth reports, so the caller is told how many
+ * were destroyed and the UI warns before confirming.
+ */
+export async function deleteOfficer(officerId: string, actingAdminId: string) {
+  if (officerId === actingAdminId) {
+    throw new AppError(400, 'You cannot delete your own account');
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: officerId },
+    select: { id: true, name: true, role: true, request_id: true },
+  });
+  if (!user) throw new AppError(404, 'Officer not found');
+  if (user.role === 'admin') {
+    throw new AppError(403, 'Admin accounts cannot be deleted from here');
+  }
+
+  return prisma.$transaction(async (tx) => {
+    const assignmentIds = (
+      await tx.assignment.findMany({ where: { user_id: officerId }, select: { id: true } })
+    ).map((a) => a.id);
+
+    // Children of assignments first, then anything else pointing at the user.
+    const validations = await tx.fieldValidation.deleteMany({
+      where: { OR: [{ officer_id: officerId }, { assignment_id: { in: assignmentIds } }] },
+    });
+    await tx.unassignRequest.deleteMany({
+      where: { OR: [{ officer_id: officerId }, { assignment_id: { in: assignmentIds } }] },
+    });
+    await tx.locationPing.deleteMany({
+      where: { OR: [{ user_id: officerId }, { assignment_id: { in: assignmentIds } }] },
+    });
+    await tx.notification.deleteMany({
+      where: { OR: [{ user_id: officerId }, { assignment_id: { in: assignmentIds } }] },
+    });
+    const assignments = await tx.assignment.deleteMany({ where: { user_id: officerId } });
+
+    // Requests this officer reviewed stay, but must lose the FK.
+    await tx.registrationRequest.updateMany({
+      where: { reviewed_by: officerId },
+      data: { reviewed_by: null },
+    });
+
+    await tx.user.delete({ where: { id: officerId } });
+
+    // Their own registration request goes too, so the same person can re-apply.
+    if (user.request_id) {
+      await tx.registrationRequest.deleteMany({ where: { request_id: user.request_id } });
+    }
+
+    return {
+      deleted: true,
+      officer: { id: user.id, name: user.name },
+      removed: {
+        assignments: assignments.count,
+        field_reports: validations.count,
+      },
+    };
+  });
 }
