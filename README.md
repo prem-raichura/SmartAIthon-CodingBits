@@ -1597,10 +1597,10 @@ Kadi Sarva Vishwavidyalaya, Gandhinagar
 
 | | |
 |:--|:--|
-| 👩‍💻 **Zenisha Devani** | [Medium](https://medium.com/@zenishadevani) |
-| 👨‍💻 **Rohan Thakar** | |
-| 👩‍💻 **Charmi Padh** | |
-| 👨‍💻 **Prem Raichura** | [GitHub](https://github.com/prem-raichura) |
+| 👩‍💻 **Zenisha Devani** | 
+| 👨‍💻 **Rohan Thakar** | 
+| 👩‍💻 **Charmi Padh** | 
+| 👨‍💻 **Prem Raichura** |
 
 <br/>
 
