@@ -5,7 +5,7 @@ import cors from 'cors';
 // Resolve the callable defensively so the build is environment-proof.
 import * as helmetModule from 'helmet';
 import morgan from 'morgan';
-import { env } from './config/env.js';
+import { cloudinaryConfigured, env } from './config/env.js';
 
 const helmet = ((helmetModule as { default?: unknown }).default ?? helmetModule) as (
   ...args: unknown[]
@@ -13,6 +13,7 @@ const helmet = ((helmetModule as { default?: unknown }).default ?? helmetModule)
 import { errorHandler } from './middleware/error.js';
 import { UPLOADS_DIR } from './lib/localStorage.js';
 import { pyHealth } from './lib/pyClient.js';
+import { verifyEmailTransport } from './utils/email.js';
 import authRouter from './modules/auth/router.js';
 import registrationRequestsRouter from './modules/registrationRequests/router.js';
 import usersRouter from './modules/users/router.js';
@@ -82,8 +83,25 @@ app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '1d' }));
 // up locally.
 app.get('/api/health', async (req, res) => {
   if (req.query.deep !== '1') return res.json({ status: 'ok' });
-  const model = await pyHealth();
-  res.json({ status: 'ok', model_service: { url: env.PY_SERVICE_URL, ...model } });
+
+  // Probes the integrations so a misconfigured deployment is diagnosable from
+  // outside. Reports which backends are active — never their credentials.
+  const [model, mail] = await Promise.all([pyHealth(), verifyEmailTransport()]);
+
+  res.json({
+    status: 'ok',
+    model_service: { url: env.PY_SERVICE_URL, ...model },
+    email: {
+      // 'stub' silently discards mail — the most common cause of "approved but
+      // no email arrived" on a fresh deployment.
+      mode: env.EMAIL_MODE,
+      host: env.EMAIL_MODE === 'smtp' ? `${env.SMTP_HOST}:${env.SMTP_PORT ?? 587}` : null,
+      from: env.EMAIL_MODE === 'smtp' ? env.SMTP_FROM ?? null : null,
+      verified: mail.ok,
+      error: mail.error ?? null,
+    },
+    uploads: cloudinaryConfigured ? 'cloudinary' : 'local-disk',
+  });
 });
 
 app.use('/api/auth', authRouter);
