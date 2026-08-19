@@ -1618,6 +1618,4 @@ Kadi Sarva Vishwavidyalaya, Gandhinagar
 
 **Built for SmartAIThon 2026** 🚦
 
-<sub>The bundled dataset and mock fixtures are drawn from a Bengaluru traffic-violations export, so station and junction names reflect that city.</sub>
-
 </div>
