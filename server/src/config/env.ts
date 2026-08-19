@@ -37,7 +37,24 @@ const envSchema = z.object({
   CRON_SECRET: z.string().optional(),
 });
 
-export const env = envSchema.parse(process.env);
+const parsed = envSchema.safeParse(process.env);
+
+if (!parsed.success) {
+  // This runs at import time, so a failure here takes down the whole process —
+  // on Vercel that surfaces only as FUNCTION_INVOCATION_FAILED. Name the exact
+  // variables so the platform log is actionable.
+  const issues = parsed.error.issues
+    .map((i) => `  - ${i.path.join('.') || '(root)'}: ${i.message}`)
+    .join('\n');
+  console.error(
+    `\n[env] Invalid or missing environment variables:\n${issues}\n\n` +
+      'Set these in your hosting provider (Vercel → Settings → Environment Variables) ' +
+      'or in server/.env for local runs. See server/.env.example.\n',
+  );
+  throw new Error(`Invalid environment: ${parsed.error.issues.map((i) => i.path.join('.')).join(', ')}`);
+}
+
+export const env = parsed.data;
 
 export const cloudinaryConfigured = Boolean(
   env.CLOUDINARY_CLOUD_NAME && env.CLOUDINARY_API_KEY && env.CLOUDINARY_API_SECRET,

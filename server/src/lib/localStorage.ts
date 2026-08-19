@@ -1,4 +1,4 @@
-import { mkdirSync } from 'node:fs';
+import { mkdir } from 'node:fs/promises';
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -6,12 +6,21 @@ import { env } from '../config/env.js';
 
 /**
  * Local disk fallback for file uploads, used when Cloudinary is not configured
- * so the server runs fully offline. Files land in <repo>/server/uploads and are
- * served by the express.static mount at /uploads.
+ * so the server runs fully offline.
+ *
+ * On a serverless host the deployment bundle is read-only — only /tmp is
+ * writable — so the directory must live there. Nothing is created at import
+ * time: doing so crashed every invocation on Vercel with EROFS before any
+ * route could run.
  */
-export const UPLOADS_DIR = path.resolve(process.cwd(), 'uploads');
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
 
-mkdirSync(UPLOADS_DIR, { recursive: true });
+export const UPLOADS_DIR = isServerless
+  ? path.join('/tmp', 'uploads')
+  : path.resolve(process.cwd(), 'uploads');
+
+/** True when files written here survive between requests. */
+export const uploadsArePersistent = !isServerless;
 
 const EXT_BY_MIME: Record<string, string> = {
   'image/jpeg': 'jpg',
@@ -27,6 +36,9 @@ export async function saveToDisk(
   mimetype: string,
   origin: string,
 ): Promise<string> {
+  // Created on first use, not at import — see note above.
+  await mkdir(UPLOADS_DIR, { recursive: true });
+
   const ext = EXT_BY_MIME[mimetype] ?? 'jpg';
   const filename = `${randomUUID()}.${ext}`;
   await writeFile(path.join(UPLOADS_DIR, filename), buffer);
